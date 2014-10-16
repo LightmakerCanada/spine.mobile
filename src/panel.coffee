@@ -1,5 +1,5 @@
-$     = Spine.$
-Stage = require('./stage')
+$        = Spine.$
+Stage    = require('./stage')
 Animator = require('./animator')
 
 
@@ -60,6 +60,6 @@ class Panel extends Stage
     right: ->
       @content.slideOut(@effectOptions(direction: 'left', complete: => @.el.removeClass 'active'))
       @header.slideOut(@effectOptions(direction: 'left', fade: true, distance: 50))
-   
+
 
 (module?.exports = Panel) or @Panel = Panel

@@ -1,5 +1,5 @@
-Spine = require('spine')
-$     = Spine.$
+Spine    = require('spine')
+$        = Spine.$
 Animator = require('./animator')
 
 globalManager = new Spine.Manager
@@ -77,6 +77,7 @@ class Stage extends Spine.Controller
 
     right: ->
       @el.slideOut(@effectOptions(direction: 'left', complete:=> @el.removeClass 'active'))
+
 
 class Stage.Global extends Stage
   global: true
