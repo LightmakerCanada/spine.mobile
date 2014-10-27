@@ -30,7 +30,6 @@
     "gulp-notify": "^1.7.1",
     "gulp-sourcemaps": "^1.1.5",
     "gulp-util": "^3.0.1",
-    "gulp-wrap-umd": "^0.2.1",
-    "requirejs": "^2.1.15"
+    "gulp-wrap": "^0.5.0"
   }
 }

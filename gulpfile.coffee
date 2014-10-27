@@ -6,18 +6,19 @@ fs         = require 'fs'
 git        = require 'gulp-git'
 gulp       = require 'gulp'
 notify     = require 'gulp-notify'
-rjs        = require 'requirejs'
 sourcemaps = require 'gulp-sourcemaps'
 util       = require 'gulp-util'
-wrapUmd    = require 'gulp-wrap-umd'
+wrap       = require 'gulp-wrap'
 
 
 # Paths.
 PATHS =
   src:
-    coffee: './src/**/*.coffee'
+    coffee : './src/**/*.coffee'
+    js     : './lib/**/*.js'
   dest:
-    js: './lib'
+    js  : './lib'
+    amd : './amd'
 
 
 # Default task.
@@ -25,7 +26,7 @@ gulp.task 'default', ['coffee', 'watch']
 
 
 # Compile all CoffeeScript.
-gulp.task 'coffee', ['coffeelint', 'coffee-src']
+gulp.task 'coffee', ['coffeelint', 'coffee-src', 'wrap-define']
 
 
 # Lint CoffeeScript.
@@ -49,6 +50,13 @@ gulp.task 'coffee-src', ->
     .pipe sourcemaps.init()
     .pipe coffee(bare: yes).on 'error', util.log
     .pipe gulp.dest PATHS.dest.js
+
+
+# Wraps modules for RequireJS compatibility.
+gulp.task 'wrap-define', ['coffee-src'], (cb)->
+  gulp.src PATHS.src.js
+    .pipe wrap 'define(function(require,exports,module){\n<%= contents %>\n});'
+    .pipe gulp.dest PATHS.dest.amd
 
 
 # Recompile files when they change.
