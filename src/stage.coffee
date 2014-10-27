@@ -2,7 +2,7 @@ Spine    = require('spine')
 $        = Spine.$
 Animator = require('./animator')
 
-globalManager = new Spine.Manager
+globalManager = new Spine.Manager()
 
 class Stage extends Spine.Controller
   @globalManager: -> globalManager
@@ -28,7 +28,7 @@ class Stage extends Spine.Controller
     @content.addClass('viewport') if @viewport
 
     @el.append(@header, @content, @footer)
-    globalManager.add(@) if @global
+    globalManager.add(this) if @global
 
   append: (elements...) ->
     elements = (e.el or e for e in elements)
@@ -40,7 +40,7 @@ class Stage extends Spine.Controller
     @content
 
   add: (panels...) ->
-    @manager or= new Spine.Manager
+    @manager or= new Spine.Manager()
     @manager.add(panels...)
     @append(panels...)
 

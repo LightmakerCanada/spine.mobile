@@ -13,7 +13,7 @@ class Panel extends Stage
     @header.append($('<h2 />'))
     @setTitle(@title) if @title
     @stage ?= Stage.globalStage()
-    @stage?.add(@)
+    @stage?.add(this)
 
   setTitle: (title = '') ->
     @header.find('h2:first').html(title)
