@@ -1,3 +1,11 @@
+### 1.1.2 (2014-10-27)
+
+
+#### Bug Fixes
+
+* `name` in `bower.json` didn't match Bower registry ([e7e40509](http://github.com/LightmakerCanada/spine.mobile.git/commit/e7e4050921bb8a95734adf679e08eed6f396ffc8))
+
+
 ### 1.1.1 (2014-10-27)
 
 
