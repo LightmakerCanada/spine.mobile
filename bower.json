@@ -1,0 +1,17 @@
+{
+  "name": "spine-mobile",
+  "version": "0.0.1",
+  "homepage": "https://github.com/LightmakerCanada/spine.mobile",
+  "description": "Spine Mobile MVC Framework.",
+  "version": "1.0.0",
+  "author": "maccman",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "velocity": "1.1.0"
+  }
+}

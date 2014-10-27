@@ -1,39 +1,40 @@
 Spine = require('spine')
 $     = Spine.$
+Animator = require('./animator')
 
 globalManager = new Spine.Manager
 
 class Stage extends Spine.Controller
   @globalManager: -> globalManager
   @globalStage:   -> @globalManager().controllers[0]
-  
+
   effectDefaults:
-    duration: 450
+    duration: 350
     easing: 'cubic-bezier(.25, .1, .25, 1)'
-    
+
   effectOptions: (options = {})  ->
     $.extend({}, @effectDefaults, options)
 
   viewport: true
-  
+
   constructor: ->
     super
     @el.addClass('stage')
-    
+
     @header  = $('<header />')
     @content = $('<article />')
     @footer  = $('<footer />')
-    
+
     @content.addClass('viewport') if @viewport
-    
+
     @el.append(@header, @content, @footer)
     globalManager.add(@) if @global
-    
-  append: (elements...) -> 
+
+  append: (elements...) ->
     elements = (e.el or e for e in elements)
     @content.append(elements...)
 
-  html: -> 
+  html: ->
     @content.html.apply(@content, arguments)
     @refreshElements()
     @content
@@ -57,28 +58,26 @@ class Stage extends Spine.Controller
       @reverseEffects[effect].apply(this)
     else
       @el.removeClass('active')
-    
+
   isActive: ->
     @el.hasClass('active')
 
   effects:
     left: ->
       @el.addClass('active')
-      @el.gfxSlideIn(@effectOptions(direction: 'left'))
-    
+      @el.slideIn(@effectOptions(direction: 'left'))
+
     right: ->
       @el.addClass('active')
-      @el.gfxSlideIn(@effectOptions(direction: 'right'))
-  
+      @el.slideIn(@effectOptions(direction: 'right'))
+
   reverseEffects:
     left: ->
-      @el.gfxSlideOut(@effectOptions(direction: 'right'))
-      @el.queueNext => @el.removeClass('active')
-    
+      @el.slideOut(@effectOptions(direction: 'right', complete:=> @el.removeClass 'active'))
+
     right: ->
-      @el.gfxSlideOut(@effectOptions(direction: 'left'))
-      @el.queueNext => @el.removeClass('active')
-      
+      @el.slideOut(@effectOptions(direction: 'left', complete:=> @el.removeClass 'active'))
+
 class Stage.Global extends Stage
   global: true
 

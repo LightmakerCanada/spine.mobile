@@ -1,6 +1,7 @@
 $     = Spine.$
-Gfx   = require('gfx')
 Stage = require('./stage')
+Animator = require('./animator')
+
 
 class Panel extends Stage
   title: false
@@ -13,17 +14,17 @@ class Panel extends Stage
     @setTitle(@title) if @title
     @stage ?= Stage.globalStage()
     @stage?.add(@)
-    
+
   setTitle: (title = '') ->
     @header.find('h2:first').html(title)
-    
+
   addButton: (text, callback) ->
     callback = @[callback] if typeof callback is 'string'
     button = $('<button />').text(text)
     button.tap(@proxy(callback))
     @header.append(button)
     button
-  
+
   activate: (params = {}) ->
     effect = params.transition or params.trans
     if effect
@@ -39,29 +40,26 @@ class Panel extends Stage
       @reverseEffects[effect].apply(this)
     else
       @el.removeClass('active')
-  
+
   effects:
     left: ->
       @el.addClass('active')
-      @content.gfxSlideIn(@effectOptions(direction: 'left'))
-      @header.gfxSlideIn(@effectOptions(direction: 'left', fade: true, distance: 50))
-    
+      @content.slideIn(@effectOptions(direction: 'left'))
+      @header.slideIn(@effectOptions(direction: 'left', fade: true, distance: 50))
+
     right: ->
       @el.addClass('active')
-      @content.gfxSlideIn(@effectOptions(direction: 'right'))
-      @header.gfxSlideIn(@effectOptions(direction: 'right', fade: true, distance: 50))
-  
+      @content.slideIn(@effectOptions(direction: 'right'))
+      @header.slideIn(@effectOptions(direction: 'right', fade: true, distance: 50))
+
   reverseEffects:
     left: ->
-      @content.gfxSlideOut(@effectOptions(direction: 'right'))
-      @header.gfxSlideOut(@effectOptions(direction: 'right', fade: true, distance: 50))
-      @content.queueNext => 
-        @el.removeClass('active')
-    
+      @content.slideOut(@effectOptions(direction: 'right', complete: => @.el.removeClass 'active'))
+      @header.slideOut(@effectOptions(direction: 'right'))
+
     right: ->
-      @content.gfxSlideOut(@effectOptions(direction: 'left'))
-      @header.gfxSlideOut(@effectOptions(direction: 'left', fade: true, distance: 50))
-      @content.queueNext => 
-        @el.removeClass('active')
-        
+      @content.slideOut(@effectOptions(direction: 'left', complete: => @.el.removeClass 'active'))
+      @header.slideOut(@effectOptions(direction: 'left', fade: true, distance: 50))
+   
+
 (module?.exports = Panel) or @Panel = Panel
