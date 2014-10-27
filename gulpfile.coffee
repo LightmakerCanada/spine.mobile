@@ -8,17 +8,28 @@ gulp       = require 'gulp'
 notify     = require 'gulp-notify'
 sourcemaps = require 'gulp-sourcemaps'
 util       = require 'gulp-util'
+parseArgs  = require 'minimist'
 wrap       = require 'gulp-wrap'
+
+
+# Parse CLI options and set defaults.
+options = parseArgs process.argv.slice(2),
+  string  : ['env', 'type']
+  default :
+    env  : process.env.NODE_ENV or 'production'
+    type : 'patch'
 
 
 # Paths.
 PATHS =
   src:
-    coffee : './src/**/*.coffee'
-    js     : './lib/**/*.js'
+    coffee    : './src/**/*.coffee'
+    js        : './lib/**/*.js'
+    changelog : './CHANGELOG.md'
+    config    : ['package.json', 'bower.json']
   dest:
-    js  : './lib'
     amd : './amd'
+    js  : './lib'
 
 
 # Default task.
