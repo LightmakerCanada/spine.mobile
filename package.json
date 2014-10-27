@@ -1,33 +1,36 @@
 {
   "name": "spine.mobile",
   "description": "Spine Mobile MVC Framework.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "maccman",
-  "licenses":
-    [{
+  "private": true,
+  "licenses": [
+    {
       "type": "MIT",
-      "url": "https://github.com/maccman/spine.mobile/blob/master/LICENSE"
-    }],
+      "url": "https://github.com/LightmakerCanada/spine.mobile/blob/master/LICENSE"
+    }
+  ],
+  "main": "./index.js",
   "repository": {
-    "type" : "git",
-    "url": "http://github.com/maccman/spine.mobile.git"
+    "type": "git",
+    "url": "http://github.com/LightmakerCanada/spine.mobile.git"
   },
-  "main" : "./index.js",
-  "dependencies" : {
-    "spine": "~1.0.0"
+  "dependencies": {
+    "spine": "~1.3.2",
+    "velocity-animate": "^1.1.0"
   },
-  "devDependencies":{
+  "devDependencies": {
     "coffee-script": "^1.8.0",
-    "gulp": "^3.8.8",
+    "conventional-changelog": "^0.0.11",
+    "gulp": "^3.8.9",
+    "gulp-bump": "^0.1.11",
     "gulp-coffee": "^2.2.0",
     "gulp-coffeelint": "^0.4.0",
-    "gulp-define-module": "^0.1.1",
+    "gulp-git": "^0.5.1",
     "gulp-notify": "^1.7.1",
-    "gulp-rename": "^1.2.0",
     "gulp-sourcemaps": "^1.1.5",
     "gulp-util": "^3.0.1",
-    "minimist": "^1.1.0",
+    "gulp-wrap-umd": "^0.2.1",
     "requirejs": "^2.1.15"
-  },
-  "main": "gulpfile.js"
+  }
 }
