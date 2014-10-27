@@ -1,20 +1,33 @@
-{ 
-  "name": "spine.mobile", 
-  "description": "Spine Mobile MVC Framework.", 
-  "version": "1.0.0", 
-  "author": "maccman", 
+{
+  "name": "spine.mobile",
+  "description": "Spine Mobile MVC Framework.",
+  "version": "1.0.0",
+  "author": "maccman",
   "licenses":
-    [{ 
-      "type": "MIT", 
+    [{
+      "type": "MIT",
       "url": "https://github.com/maccman/spine.mobile/blob/master/LICENSE"
-    }], 
-  "repository": { 
-    "type" : "git", 
+    }],
+  "repository": {
+    "type" : "git",
     "url": "http://github.com/maccman/spine.mobile.git"
-  }, 
+  },
   "main" : "./index.js",
   "dependencies" : {
-    "spine": "~1.0.0",
-    "gfx": "~0.0.2"
-  }
+    "spine": "~1.0.0"
+  },
+  "devDependencies":{
+    "coffee-script": "^1.8.0",
+    "gulp": "^3.8.8",
+    "gulp-coffee": "^2.2.0",
+    "gulp-coffeelint": "^0.4.0",
+    "gulp-define-module": "^0.1.1",
+    "gulp-notify": "^1.7.1",
+    "gulp-rename": "^1.2.0",
+    "gulp-sourcemaps": "^1.1.5",
+    "gulp-util": "^3.0.1",
+    "minimist": "^1.1.0",
+    "requirejs": "^2.1.15"
+  },
+  "main": "gulpfile.js"
 }
